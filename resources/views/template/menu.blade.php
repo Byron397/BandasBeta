@@ -25,13 +25,13 @@
                     @elseif($usuario->tipo_usuario == 'admin')
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle custom-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Admin
+                                Administrar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="usuarios" data-toggle="tooltip" data-placement="bottom">Administrar Usuarios</a>
-                                <a class="dropdown-item" href="bandas" data-toggle="tooltip" data-placement="bottom">Administrar Bandas</a>
-                                <a class="dropdown-item" href="eventos" data-toggle="tooltip" data-placement="bottom">Administrar Eventos</a>
-                                <a class="dropdown-item" href="multimedia" data-toggle="tooltip" data-placement="bottom">Administrar Multimedia</a>
+                                <a class="dropdown-item" href="usuarios" data-toggle="tooltip" data-placement="bottom">Usuarios</a>
+                                <a class="dropdown-item" href="bandas" data-toggle="tooltip" data-placement="bottom">Bandas</a>
+                                <a class="dropdown-item" href="eventos" data-toggle="tooltip" data-placement="bottom">Eventos</a>
+                                <a class="dropdown-item" href="multimedia" data-toggle="tooltip" data-placement="bottom">Multimedia</a>
                             </div>
                         </li>
                     @endif
