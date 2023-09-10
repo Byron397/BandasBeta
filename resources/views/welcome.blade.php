@@ -3,7 +3,7 @@
     @if(session('success'))
         <script>
             Swal.fire({
-                title: '¡Usuario!',
+                title: '',
                 text: '{{ session('success') }}',
                 icon: 'success',
                 confirmButtonText: 'Ok'
