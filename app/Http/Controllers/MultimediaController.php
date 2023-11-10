@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Bandas;
 use App\Models\Multimedia;
 use Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class MultimediaController extends Controller
 {

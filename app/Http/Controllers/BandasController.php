@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Bandas;
 use App\Models\Usuarios;
 use Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class BandasController extends Controller
 {
@@ -72,11 +74,22 @@ class BandasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    /*  public function destroy($id)
+        {
+            $bandas = Bandas::find($id);
+            $bandas->delete();
+            return redirect('/bandas')->with('success', 'La Banda ha sido eliminada con éxito');
+        }
+    */
     public function destroy($id)
     {
-        $bandas = Bandas::find($id);
-        $bandas->delete();
-        return redirect('/bandas')->with('success', 'La Banda ha sido eliminada con éxito');
+        try {
+            $bandas = Bandas::findOrFail($id);
+            $bandas->delete();
+            return redirect('/bandas')->with('success', 'La Banda ha sido eliminada con éxito');
+        } catch (\Exception $e) {
+            return redirect('/bandas')->with('error', 'No se pudo eliminar la banda. Detalles del error: ' . $e->getMessage());
+        }
     }
 
 }

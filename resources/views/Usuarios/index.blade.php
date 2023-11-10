@@ -4,14 +4,23 @@
     @if(session('success'))
         <script>
             Swal.fire({
-                title: '¡usuarios!',
+                title: '¡Usuarios!',
                 text: '{{ session('success') }}',
                 icon: 'success',
                 confirmButtonText: 'Ok'
             });
         </script>
     @endif
-
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                title: '¡ERROR!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        </script>
+    @endif
     <!-- Index usuarios -->
     <section class="page-section" id="paisestabla">
         </br>

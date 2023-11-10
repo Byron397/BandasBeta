@@ -8,6 +8,7 @@ use App\Models\Usuarios;
 use App\Models\Multimedia;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PerfilController extends Controller
 {

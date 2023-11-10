@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuarios;
 use Illuminate\Support\Facades\Hash;
 use Session;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UsuariosController extends Controller
 {
@@ -82,10 +82,22 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*    public function destroy($id)
+        {
+            $usuarios = Usuarios::find($id);
+            $usuarios->delete();
+            return redirect('/usuarios')->with('success', 'El usuario ha sido eliminado con éxito');
+        }
+    */
     public function destroy($id)
     {
-        $usuarios = Usuarios::find($id);
-        $usuarios->delete();
-        return redirect('/usuarios')->with('success', 'El usuario ha sido eliminado con éxito');
+        try {
+            $usuarios = Usuarios::findOrFail($id);
+            $usuarios->delete();
+            return redirect('/usuarios')->with('success', 'El usuario ha sido eliminado con éxito');
+        } catch (\Exception $e) {
+            return redirect('/usuarios')->with('error', 'No se pudo eliminar el usuario. Detalles del error: ' . $e->getMessage());
+        }
     }
+
 }

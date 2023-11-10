@@ -8,6 +8,8 @@ use App\Models\Usuarios;
 use App\Models\Eventos;
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class EventosController extends Controller
 {
@@ -71,10 +73,23 @@ class EventosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    /*
+        public function destroy($id)
+        {
+            $eventos = Eventos::find($id);
+            $eventos->delete();
+            return redirect('/eventos')->with('success', 'Evento eliminado con éxito');
+        } 
+    */
+
     public function destroy($id)
     {
-        $eventos = Eventos::find($id);
-        $eventos->delete();
-        return redirect('/eventos')->with('success', 'Evento eliminado con éxito');
+        try {
+            $eventos = Eventos::findOrFail($id);
+            $eventos->delete();
+            return redirect('/eventos')->with('success', 'Evento eliminado con éxito');
+        } catch (\Exception $e) {
+            return redirect('/eventos')->with('error', 'No se pudo eliminar el evento. Detalles del error: ' . $e->getMessage());
+        }
     }
 }

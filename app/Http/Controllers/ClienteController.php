@@ -9,6 +9,7 @@ use App\Models\Usuarios;
 use App\Models\Multimedia;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ClienteController extends Controller
 {
@@ -72,11 +73,22 @@ class ClienteController extends Controller
         return redirect()->route('cliente.index')->with('success', 'Evento actualizado exitosamente.');
     }
 
+    /*    public function destroy($id)
+        {
+            $eventos = Eventos::find($id);
+            $eventos->delete();
+            return redirect('/cliente')->with('success', 'Evento eliminado con éxito');
+        }
+    */
     public function destroy($id)
     {
-        $eventos = Eventos::find($id);
-        $eventos->delete();
-        return redirect('/cliente')->with('success', 'Evento eliminado con éxito');
+        try {
+            $eventos = Eventos::findOrFail($id);
+            $eventos->delete();
+            return redirect('/cliente')->with('success', 'Evento eliminado con éxito');
+        } catch (\Exception $e) {
+            return redirect('/cliente')->with('error', 'No se pudo eliminar el cliente. Detalles del error: ' . $e->getMessage());
+        }
     }
 
 }

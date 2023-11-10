@@ -10,6 +10,16 @@
             });
         </script>
     @endif
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                title: '¡ERROR!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        </script>
+    @endif
     <!-- Index Documentos -->
     <section class="page-section" id="paisestabla">
         <div class="container-fluid">

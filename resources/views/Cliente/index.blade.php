@@ -10,6 +10,16 @@
             });
         </script>
     @endif
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                title: '¡ERROR!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        </script>
+    @endif
     <br/>
     <section id="cliente" class="page-section">
         <div class="container-fluid">
